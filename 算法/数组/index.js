@@ -77,6 +77,4 @@ let res = removeTheArray(num, 3);
 
 console.log("len", res);
 console.log("arr", num); //原数组会发生变化
-
-
-
+console.log('zyd')
