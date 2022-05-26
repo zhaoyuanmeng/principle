@@ -5,7 +5,7 @@
  *@Description: 二分查找 有序不重复的数组
  */
 
-let num = [1, 3, 5, 6];
+let num = [1, 3, 3, 5, 6];
 
 let target = 0;
 
@@ -36,7 +36,6 @@ const binarySearch = (num, target) => {
 // 目标值等于数组中某一个元素
 // 目标值插入数组中的位置
 // 目标值在数组所有元素之后
-
 const searchInsertPosition = (num, target) => {
   let left = 0;
   let right = num.length - 1;
@@ -55,6 +54,29 @@ const searchInsertPosition = (num, target) => {
   // 处理上面的三种情况
   return right + 1;
 };
-let res = searchInsertPosition(num, target);
 
-console.log("结果为", res);
+/*
+ *@Author: 赵元达
+ *@Date: 2022-05-26 08:40:36
+ *@parms:
+ *@Description: 移除数组 采用双指针的方式 快慢
+ */
+const removeTheArray = (num, target) => {
+  //慢指针
+  let slow = 0;
+  let size = num.length;
+  for (let fast = 0; fast < size; fast++) {
+    if (num[fast] != target) {
+      num[slow++] = num[fast];
+    }
+  }
+  return slow;
+};
+
+let res = removeTheArray(num, 3);
+
+console.log("len", res);
+console.log("arr", num); //原数组会发生变化
+
+
+
