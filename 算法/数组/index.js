@@ -5,7 +5,7 @@
  *@Description: 二分查找 有序不重复的数组
  */
 
-let num = [1, 3, 3, 5, 6];
+let num = [-11, 3, 3, 5, 6];
 
 let target = 0;
 
@@ -73,9 +73,51 @@ const removeTheArray = (num, target) => {
   return slow;
 };
 
-let res = removeTheArray(num, 3);
+/*
+ *@Author: 赵元达
+ *@Date: 2022-05-28 10:19:36
+ *@parms:
+ *@Description: 一个有序数组的平方 暴力破解法
+ */
+const theSquareOfAnOrderlyArray = (num) => {
+  let res = [];
+  let len = num.length;
+  for (let index = 0; index < len; index++) {
+    res.push(num[index] * num[index]);
+  }
+  // 排序res
+  res.sort();
+};
 
-console.log("len", res);
-console.log("arr", num); //原数组会发生变化
-console.log("zyd");
-console.log("zyd");
+/*
+ *@Author: 赵元达
+ *@Date: 2022-05-28 10:19:36
+ *@parms:
+ *@Description: 一个有序数组的平方 双指针法
+ */
+const theSquareOfAnOrderlyArrayPlus = (num) => {
+  let res = [];
+  let len = num.length;
+  let i = 0;
+  let k = len - 1;
+  let j = len - 1;
+  while (i <= j) {
+    if (num[i] * num[i] < num[j] * num[j]) {
+      res[k--] = num[j] * num[j];
+      j--;
+    } else {
+      res[k--] = num[i] * num[i];
+      i++;
+    }
+  }
+  return res;
+};
+
+/*
+ *@Author: 赵元达
+ *@Date: 2022-05-28 10:50:38
+ *@parms:
+ *@Description: 长度最小的子数组
+ */
+
+const theLengthOfTheSmallestSubarray = (num) => {};

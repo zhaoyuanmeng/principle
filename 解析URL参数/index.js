@@ -22,15 +22,13 @@ function parseParam(url) {
       paramsObj[param] = true;
     }
   });
-
   return paramsObj;
 }
 
 console.log(
   "url",
   parseParam(
-    "http://192.168.100.221:8080/dist2/nonHeatingAwait?comId=63&name=长A"
+    "http://192.168.100.251:9000/#/runCenter?token=c7b9792001964c0581be52135d6b0106"
   )
 );
-
-
+  

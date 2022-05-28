@@ -82,12 +82,11 @@ class MyPromise {
   catch() {}
 }
 
-// 回调函数升级版
+// 回调函数升级
 let p1 = new MyPromise((resolve, reject) => {
   // 这里面的参数实际上是一个函数 真正定义这个函数的逻辑是放在了promise那个类里面
   // reject("失败了！！！");
   // resolve("成功了！！！！");
-
   setTimeout(() => {
     resolve("成功了！！！！");
   }, 1000);
