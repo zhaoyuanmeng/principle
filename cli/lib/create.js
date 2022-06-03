@@ -1,4 +1,5 @@
 const path = require("path");
+const Creator = require("./creator");
 const fs = require("fs-extra"); //fs不太靠谱 不支持promise 使用fs-extra
 const Inquirer = require("inquirer");
 // 创建模块
@@ -34,4 +35,6 @@ module.exports = async function (projectName, options) {
     }
   }
   // 创建项目
+ const creator =  new Creator(projectName,targetDir)
+ creator.create()
 };
