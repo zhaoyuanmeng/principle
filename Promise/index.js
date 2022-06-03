@@ -4,7 +4,6 @@
  *@parms:
  *@Description: 手写promise代码
  */
-
 class MyPromise {
   // exec 相当于是个回调函数
   constructor(exec) {
@@ -23,13 +22,11 @@ class MyPromise {
     this.resolve = this.resolve.bind(this);
     this.reject = this.reject.bind(this);
   }
-
   initVal() {
     //  初始化值
     this.PromiseResult = null; //终值
     this.PromiseState = "pending"; //初始等待状态
   }
-
   resolve(val) {
     if (this.PromiseState !== "pending") {
       return;
@@ -42,7 +39,6 @@ class MyPromise {
       this.sucessFns.map((fn) => fn(this.PromiseResult));
     }
   }
-
   reject(reason) {
     if (this.PromiseState !== "pending") {
       return;
@@ -54,7 +50,6 @@ class MyPromise {
       this.errFns.map((fn) => fn(this.PromiseResult));
     }
   }
-
   then(onFulFilled, onRejected = () => {}) {
     if (typeof onFulFilled != "function") {
       return;
@@ -81,7 +76,6 @@ class MyPromise {
   }
   catch() {}
 }
-
 // 回调函数升级
 let p1 = new MyPromise((resolve, reject) => {
   // 这里面的参数实际上是一个函数 真正定义这个函数的逻辑是放在了promise那个类里面
@@ -91,9 +85,7 @@ let p1 = new MyPromise((resolve, reject) => {
     resolve("成功了！！！！");
   }, 1000);
 });
-
 // console.log("p1", p1);
-
 p1.then(
   (res) => {
     console.log("res", res);
