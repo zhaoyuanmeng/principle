@@ -136,3 +136,26 @@ ajax({
     console.log(data);
   },
 });
+
+function jsonp(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    const random = "callback";
+    window[random] = (data) => {
+      resolve(data);
+    };
+    const script = document.createElement("script");
+
+    let res = "";
+    Object.keys(data).forEach((key) => {
+      res += `&${key}=${data[key]}`;
+    });
+    script.src = `${url}?callback=${random}${res}`;
+    script.onload = () => {
+      script.remove();
+    };
+    script.onerror = () => {
+      reject();
+    };
+    document.body.appendChild(script);
+  });
+}

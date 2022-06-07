@@ -1,0 +1,57 @@
+#! /usr/bin/env node
+
+// console.log("zyd");
+
+// 1）配置可执行命令 commander模块
+
+const program = require("commander");
+const chalk = require("chalk");
+// 核心功能 创建项目 更改配置文件（yarn npm等等）3.ui界面
+
+// 1.创建项目
+program
+  .command("create <app-name>")
+  .description("Create a new application")
+  .option("-f,--force", "overwrite target directory if it already exists")
+  .action((name, cmd) => {
+    // 这个aciton方法已经是更新了 里面的cmd就是个对象{} 你传入啥option就会有啥不传就不会有
+    // ha-cli create xxx cmd:{}
+    // ha-cli create xxx --force cmd:{force:true }
+
+    // 调用create模块去创建 node是动态的
+    require("../lib/create")(name, cmd);
+  });
+program
+  .version(`ha-cli ${require("../package.json").version}`)
+  .usage(`<command> [options]`);
+
+// 2.配置
+// 例如 ha-cli config --get
+// 例如 ha-cli config --set '路径' 1
+program
+  .command("config [value]")
+  .description("inspect adn modify config")
+  // -g -s 就是简写 第二个参数是描述
+  .option("-g --get <path>", "get value from option")
+  .option("-s --set <path> <value>", "set value to path")
+  .action((name, cmd) => {
+    console.log("name", name);
+    console.log("cmd", cmd);
+  });
+
+program.on("--help", function () {
+  console.log();
+  console.log(`
+  Run ${chalk.cyan("ha-cli <command> --help")} show details
+  `);
+  console.log();
+});
+
+// 解析用户执行命令传入的参数
+program.parse(process.argv);
+
+// 2）做一个命令行交互的系统 inquirer模块
+
+// 3）将模板下载下来 download-git-repo
+
+// 4）根据用户的选择动态的生成内容 metalsmith

@@ -25,7 +25,7 @@ function debounce(fun, delay) {
  */
 
 function throttle(fun, delay) {
-  // 这里相当于是下面那个函数的上层环境 是能够访问到的  作用域链的知识点了
+  // 这里相当于是下面那个函数的上层环境 是能够访问到的  作用域链的知识点了 闭包
   let last, deferTimer;
   return function (args) {
     let that = this;
