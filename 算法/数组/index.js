@@ -79,4 +79,39 @@ console.log("len", res);
 console.log("arr", num); //原数组会发生变化
 
 
+// 有序数组的平方
+const theSquareOfAnOrderlyArray = (num)=>{
 
+  let i = 0
+  let j = num.length-1
+  let k = j
+  while(i<=j){
+    if(num[i] * num[i] < num[j] * num[j]){
+      num[k--] = num[j] * num[j]
+      j--
+    }else{
+      num[k--] = num[i] * num[i]
+      i++
+    }
+    
+
+    }
+  }
+
+
+// 长度最小的子数组 暴力破解的方法
+const theLengthOfTheSmallestSubarray = (num,s)=>{
+  let res = 0
+  for(let i=0;i<num.length;i++){
+    let sum = 0
+    for(let j=i;j<num.length;j++){
+      sum += num[j]
+      if(sum>=s){
+        let len = j-i+1
+        res = res>len?len:res
+        break
+      }
+    }
+    return res
+  }
+}
