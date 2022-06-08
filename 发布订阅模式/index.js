@@ -59,3 +59,5 @@ pubsub.subscribe("ai", (a) => {
   console.log("ai---", a);
 });
 pubsub.publish("ai", "zyd");
+
+console.log("aaaaa", 0.1 + 0.2); //0.30000000000000000004
