@@ -1,13 +1,17 @@
 const paths = require("./path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const miNiCssPlugin = require("mini-css-extract-plugin");
 module.exports = function (options) {
   return {
     mode: options.mode,
     entry: paths.appSrc,
     output: {
       path: paths.appBuild,
-      publicPath: "/",
+      publicPath: "./",
+      // 设置文件名
+      filename: "[name]_[chunkhash:8].js",
     },
+    target: "web",
     cache: {
       // 使用持久化缓存
       type: "filesystem", //memory:使用内容缓存 filesystem：使用文件缓存
@@ -27,12 +31,30 @@ module.exports = function (options) {
             },
           ],
         },
+        {
+          test: /\.css$/,
+          use: [miNiCssPlugin.loader, "css-loader"],
+        },
+        {
+          test: /\.(png|jpg|jpeg|gif|svg)$/,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "[name]_[hash:8].[ext]",
+              },
+            },
+          ],
+        },
       ],
     },
-    devServer: {},
+    devServer: options.devServer,
     plugins: [
       new HtmlWebpackPlugin({
         template: "./public/index.html",
+      }),
+      new miNiCssPlugin({
+        filename: "[name]_[contenthash:8].css",
       }),
       ...options.plugins,
     ],

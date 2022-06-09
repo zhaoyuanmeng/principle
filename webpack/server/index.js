@@ -18,7 +18,7 @@ const { port, host } = appConfig; // 监听的端口号
 const compiler = Webpack(webpackConfig);
 //  devServer 参数
 const devServerOptions = Object.assign({}, webpackConfig.devServer, {
-  // open: true, // 自动打开浏览器
+  open: true, // 自动打开浏览器
   compress: true, // gzip 压缩
   stats: "minimal",
 });
