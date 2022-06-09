@@ -1,4 +1,6 @@
 .zyd-color {
   font-size: 30px;
-  color: rgb(189, 16, 137);
+  color: lch(53 105 40);
+  border-radius: 10px;
+  backface-visibility: hidden;
 }

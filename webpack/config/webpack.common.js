@@ -1,6 +1,8 @@
 const paths = require("./path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const miNiCssPlugin = require("mini-css-extract-plugin");
+const mizeCss = require("css-minimizer-webpack-plugin");
+
 module.exports = function (options) {
   return {
     mode: options.mode,
@@ -33,7 +35,21 @@ module.exports = function (options) {
         },
         {
           test: /\.css$/,
-          use: [miNiCssPlugin.loader, "css-loader"],
+          use: [
+            miNiCssPlugin.loader,
+            "css-loader",
+            "postcss-loader",
+            // 这是不拆成写postcss.config.js的形式
+            // {
+            //   loader: "postcss-loader",
+            //   options: {
+            //     postcssOptions: {
+            //       plugins: [require("autoprefixer")],
+            //       // plugins: ["postcss-preset-env"],
+            //     },
+            //   },
+            // },
+          ],
         },
         {
           test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -56,6 +72,7 @@ module.exports = function (options) {
       new miNiCssPlugin({
         filename: "[name]_[contenthash:8].css",
       }),
+      new mizeCss(),
       ...options.plugins,
     ],
     stats: options.stats, // 打包日志发生错误和新的编译时输出
