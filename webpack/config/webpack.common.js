@@ -49,6 +49,13 @@ module.exports = function (options) {
             //     },
             //   },
             // },
+            {
+              loader: "px2rem-loader",
+              options: {
+                remUnit: 75, //1rem  = 75px
+                remPrecesion: 8,
+              },
+            },
           ],
         },
         {

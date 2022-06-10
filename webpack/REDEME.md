@@ -20,3 +20,18 @@
 6、为什么css要前缀
   - 需要兼容其他的浏览器 比如 -webkit-border-radius:10px 
   - 解决是 通过postcss（后置处理器） autoprefixer自动补全css3前缀
+
+
+7、移动端px 自动转rem
+  - px2rem-loader 
+  - 利用lib-flexible库 动态计算根元素的font-size值
+
+8、（静态资源内敛）把库内联到html中怎么做（除了加script标签直接把代码放进来）
+  - 这是webpack4的做法
+  - HTML和js内联 raw-loader  直接去入口的html里面使用<%=%>语法引入因为这是html-webpack-plugin提供的语法
+  - css内联 html-inline-css-webpack-plugin
+
+
+  - webpack5是assets module
+
+9、多页面打包的方案
