@@ -113,21 +113,39 @@ const theSquareOfAnOrderlyArrayPlus = (num) => {
   return res;
 };
 
-
-
 // 长度最小的子数组 暴力破解的方法
-const theLengthOfTheSmallestSubarray = (num,s)=>{
-  let res = 0
-  for(let i=0;i<num.length;i++){
-    let sum = 0
-    for(let j=i;j<num.length;j++){
-      sum += num[j]
-      if(sum>=s){
-        let len = j-i+1
-        res = res>len?len:res
-        break
+const theLengthOfTheSmallestSubarray = (num, s) => {
+  let res = 0;
+  for (let i = 0; i < num.length; i++) {
+    let sum = 0;
+    for (let j = i; j < num.length; j++) {
+      sum += num[j];
+      if (sum >= s) {
+        let len = j - i + 1;
+        res = res > len ? len : res;
+        break;
       }
     }
-    return res
+    return res;
   }
-}
+};
+
+// 长度最小的子数组 滑动窗口的方法
+const theLengthOfTheSmallestSubarrayPlus = (num, s) => {
+  let i = 0;
+  let sum = 0;
+  let res = 10000; //给个大的数
+  let lens = 0;
+  for (let j = 0; j < num.length; j++) {
+    sum += num[j];
+    while (sum >= s) {
+      lens = j - i + 1;
+      res = res < lens ? res : lens;
+      sum -= num[i];
+      i++;
+    }
+  }
+  return res == 10000 ? 0 : res;
+};
+
+// console.log("res-", theLengthOfTheSmallestSubarrayPlus([2, 3, 1, 2, 4, 3], 7));
