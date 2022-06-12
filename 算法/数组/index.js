@@ -149,3 +149,75 @@ const theLengthOfTheSmallestSubarrayPlus = (num, s) => {
 };
 
 // console.log("res-", theLengthOfTheSmallestSubarrayPlus([2, 3, 1, 2, 4, 3], 7));
+
+/*
+ *@Author: 赵元达
+ *@Date: 2022-06-12 11:06:33
+ *@parms:
+ *@思路:
+ *@Description: 螺旋矩阵 给定一个正整数 n，生成一个包含 1 到 n^2 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。
+ */
+// n = 3
+//[
+//   [1,2,3]
+//   [8,9,4],
+//   [7,6,5],
+// ]
+
+// n = 4
+// [
+//   [1, 2, 3, 4]
+//   [12,13,14,5]
+//   [11,16,15,6]
+//   [10, 9, 8,7]
+// ]
+
+const spiralMatrix = (n) => {
+  let res = [[]]; //定义一个二维数组 用来返回结果
+  let startX = 0; //定义每循环一个圈的起始位置
+  let startY = 0; // 与上面的含义一样 不过就是二维数组的一个表示
+  let loop = n / 2; //每个圈循环几次 如果n=3 loop=1 矩阵中间的值需要单独处理
+  let mid = n / 2; // 矩阵中间的位置 n=3 中间的位置就是（1，1） n为5就是（2，2）
+  let count = 1; //用来给矩阵每一个空格赋值
+  let offset = 1; //每一圈循环，需要控制每一条边遍历的长度(相当于控制了不取最后一个元素)
+  let i, j;
+  while (loop--) {
+    i = startX;
+    j = startY;
+
+    // 下面开始for就是模拟转了一圈
+
+    // 模拟填充上行（左闭右开）
+    for (j = startY; j < startY + n - offset; j++) {
+      res[i][j] = count++;
+    }
+
+    // 模拟填充右列（上闭下开）
+    for (i = startX; i < startX + n - offset; j++) {
+      res[i][j] = count++;
+    }
+
+    // 模拟填充下行（右闭左开）
+    for (; j > startY; j--) {
+      res[i][j] = count++;
+    }
+
+    // 模拟填充左列（下闭上开）
+    for (; i > startX; i--) {
+      res[i][j] = count++;
+    }
+
+    // 这是为了控制这个圈起始的位置
+    startX++;
+    startY++;
+
+    // offset控制每一圈里每一条边遍历的长度 因为startX和startY也都加1了所以offset每次要加2
+    offset += 2;
+  }
+
+  // 判断n为奇数的情况 需要单独给他赋值2
+  if (n % 2 != 0) {
+    res[mid][mid] = count;
+  }
+  return res;
+};

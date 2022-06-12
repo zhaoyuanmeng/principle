@@ -28,10 +28,20 @@
 
 8、（静态资源内敛）把库内联到html中怎么做（除了加script标签直接把代码放进来）
   - 这是webpack4的做法
-  - HTML和js内联 raw-loader  直接去入口的html里面使用<%=%>语法引入因为这是html-webpack-plugin提供的语法
+  - HTML和js内联 raw-loader  直接去入口的html里面使用 %=%>语法引入因为这是html-webpack-plugin提供的语法
   - css内联 html-inline-css-webpack-plugin
 
 
   - webpack5是assets module
 
 9、多页面打包的方案
+  - glob.sync 
+
+10、source map 
+
+11、提取页面公共资源
+- 基础库分离 通过cdn引入 不打入bundle html-webpack-externals-plugin
+- SplitChunksPlugin  https://juejin.cn/post/7098213874788204580#heading-2
+
+12、tree shaking（很重要）
+- 必须是es6语法
