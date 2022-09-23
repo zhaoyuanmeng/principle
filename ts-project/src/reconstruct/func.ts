@@ -20,3 +20,14 @@ function createPerson(ctor: PersoonConstructor): Person {
 
 export let a = createPerson(CreatePerson);
 // 构造器案列================================
+
+// 对象动态添加属性 =========
+
+interface Zperson {
+  // 如果不知道会有什么属性，可以用可索引签名 那个key可以采用任何名代替
+  [key: string]: string | number;
+}
+
+const zyd: Zperson = {};
+zyd.age = 18;
+//对象动态添加属性 =========
