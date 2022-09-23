@@ -8,7 +8,10 @@ type GetArrLast<Arr extends unknown[]> = Arr extends [...unknown[], infer Last]
   ? Last
   : never;
 
-type one = GetArrOne<[1, 2]>;
+type One = GetArrOne<[1, 2]>;
 type Last = GetArrLast<[1, 2]>;
+
+let one: One = 1;
+let last: Last = 2;
 
 export const a = "a";
