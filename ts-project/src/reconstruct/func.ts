@@ -31,3 +31,9 @@ interface Zperson {
 const zyd: Zperson = {};
 zyd.age = 18;
 //对象动态添加属性 =========
+
+// 约束以某个字符串开头的字符串字面量类型时 ====
+function sayHello(str: `z${string}`) {}
+sayHello("zyd");
+
+// 约束以某个字符串开头的字符串字面量类型时 ====
