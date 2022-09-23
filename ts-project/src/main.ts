@@ -50,6 +50,18 @@ const fn = (text: string) => {
   console.log("---", text);
 };
 
+interface bb {
+  bane: "aa";
+}
+interface cc extends bb {
+  aa: "aa";
+}
+
+let b: cc = {
+  bane: "aa",
+  aa: "aa",
+};
+
 const myfunc: gg = (a: string) => {
   console.log(a);
 };
