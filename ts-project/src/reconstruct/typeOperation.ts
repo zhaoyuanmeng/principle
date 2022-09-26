@@ -16,7 +16,7 @@ type MapTypes<T> = {
 
 type ress = MapTypes<{ a: "zyd" }>;
 
-const z_ress: ress = {
+const z_res: ress = {
   aaa: ["zyd", "zyd", "zyd"],
 };
 
