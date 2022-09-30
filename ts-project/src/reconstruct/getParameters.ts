@@ -5,7 +5,7 @@
  *@Description: 提取参数和返回值的类型。
  */
 
-type GetReturnType<Fn extends Function> = Fn extends (
+ type GetReturnType<Fn extends Function> = Fn extends (
   ...args: any[]
 ) => infer ReturType
   ? ReturType
@@ -13,6 +13,5 @@ type GetReturnType<Fn extends Function> = Fn extends (
 
 type fn = (a: string) => string;
 
-type MyReturn = GetReturnType<fn>;
+export type MyReturn = GetReturnType<fn>;
 
-export let test = "a";
