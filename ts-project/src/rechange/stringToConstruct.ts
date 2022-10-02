@@ -33,3 +33,13 @@ export type CamelCasePlus<Str extends string> =
 type CamelCaseResPlus = CamelCasePlus<"zyd_zyd_zyd">;
 
 let CamelCaseResTest: CamelCaseResPlus = "zydZydZyd";
+
+type DropSubStr<
+  Str extends string,
+  Substr extends string
+> = Str extends `${infer Prefix}${Substr}${infer Suffix}`
+  ? DropSubStr<`${Prefix}${Suffix}`, Substr>
+  : Str;
+
+type DropSubStrRes = DropSubStr<"zydz", "z">;
+
