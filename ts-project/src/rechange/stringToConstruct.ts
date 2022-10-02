@@ -21,4 +21,11 @@ let strTest: Str = "Zyd";
  * @date 2022-10-02 19:49
  */
 
-export const test = "test";
+export type CamelCase<Str extends string> =
+  Str extends `${infer First}_${infer Second}_${infer Third}`
+    ? `${First}${CapitalizeStr<Second>}${CapitalizeStr<Third>}`
+    : Str;
+
+type CamelCaseRes = CamelCase<"zyd_zyd_zyd">;
+
+let CamelCaseResTest: CamelCaseRes = "zydZydZyd";
