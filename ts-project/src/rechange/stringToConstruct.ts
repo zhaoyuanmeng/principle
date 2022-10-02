@@ -14,12 +14,7 @@ type Str = CapitalizeStr<"zyd">;
 
 let strTest: Str = "Zyd";
 
-/**
- * @author Zhao YuanDa
- * @parms:
- * @description: //TODO
- * @date 2022-10-02 19:49
- */
+// 这个只适合三个字母的那种
 
 export type CamelCase<Str extends string> =
   Str extends `${infer First}_${infer Second}_${infer Third}`
@@ -28,4 +23,13 @@ export type CamelCase<Str extends string> =
 
 type CamelCaseRes = CamelCase<"zyd_zyd_zyd">;
 
-let CamelCaseResTest: CamelCaseRes = "zydZydZyd";
+// 做个递归版本的
+
+export type CamelCasePlus<Str extends string> =
+  Str extends `${infer First}_${infer SmallCase}${infer Other}`
+    ? `${First}${Uppercase<SmallCase>}${CamelCasePlus<Other>}`
+    : Str;
+
+type CamelCaseResPlus = CamelCasePlus<"zyd_zyd_zyd">;
+
+let CamelCaseResTest: CamelCaseResPlus = "zydZydZyd";
