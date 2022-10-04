@@ -44,4 +44,4 @@ let obj: Dog = {
   bark: function () {},
 };
 
-export const message = "hello world";
+export const sa = "hello world";
